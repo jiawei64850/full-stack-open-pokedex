@@ -29,6 +29,7 @@ jobs:
       - name: e2e test
         run: npm run test:e2e
   tag_release:
+    if: ${{ github.event_name == 'push' }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
@@ -36,3 +37,4 @@ jobs:
         uses: anothrNick/github-tag-action@1.70.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch

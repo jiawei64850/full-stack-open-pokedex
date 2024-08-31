@@ -21,7 +21,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: success()
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           content: "New version of Pokedex deployed"
           status: ${{ job.status }}
@@ -33,7 +33,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: failure() 
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           content: "Build failed"
           status: ${{ job.status }}

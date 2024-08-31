@@ -21,6 +21,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         if: success()
         with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           content: "New version of Pokedex deployed"
           status: ${{ job.status }}
@@ -28,11 +29,11 @@ jobs:
             Version `${{ github.event.release.tag_name }}`
             to (${{ github.event.release.html_url }}) by (${{ github.event.commits.author.name }})
           color: 0x2ECC71
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: The deployment has failed
         uses: sarisia/actions-status-discord@v1
         if: failure() 
         with:
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
           nodetail: true
           content: "Build failed"
           status: ${{ job.status }}
@@ -40,5 +41,4 @@ jobs:
             Version `${{ github.event.release.tag_name }}`
             commit (${{ github.event.commits.url }}) by (${{ github.event.commits.author.name }}) broke the build
           color: 0xE74C3C
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             

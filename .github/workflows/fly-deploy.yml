@@ -31,7 +31,7 @@ jobs:
           status: ${{ job.status }}
           description: |
             Version `${{ github.sha }}`
-            to `https://fly.io/apps/${{ github.repository }}` by `${{ github.actor }}`
+            to https://full-stack-open-pokedex-blue-morning-4768.fly.dev/ by `${{ github.actor }}`
           color: 0x2ECC71
       - name: The deployment has failed
         uses: sarisia/actions-status-discord@v1

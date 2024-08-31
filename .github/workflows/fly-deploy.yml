@@ -34,11 +34,11 @@ jobs:
         if: failure() 
         with:
           nodetail: true
-          content: "New version of Pokedex deployed"
+          content: "Build failed"
           status: ${{ job.status }}
           description: |
             Version `${{ github.event.release.tag_name }}`
-            Click to (${{ github.event.commits.url }}) by (${{ github.event.commits.author.name }}) broke the build
+            commit (${{ github.event.commits.url }}) by (${{ github.event.commits.author.name }}) broke the build
           color: 0xE74C3C
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             

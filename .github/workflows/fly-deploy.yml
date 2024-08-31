@@ -26,8 +26,8 @@ jobs:
           content: "New version of Pokedex deployed"
           status: ${{ job.status }}
           description: |
-            Version `${{ github.event.release.tag_name }}`
-            to (${{ github.event.release.html_url }}) by (${{ github.event.commits.author.name }})
+            Version `${{ github.sha }}`
+            to `https://fly.io/apps/${{ github.repository }}` by `${{ github.actor }}`
           color: 0x2ECC71
       - name: The deployment has failed
         uses: sarisia/actions-status-discord@v1
@@ -38,7 +38,7 @@ jobs:
           content: "Build failed"
           status: ${{ job.status }}
           description: |
-            Version `${{ github.event.release.tag_name }}`
-            commit (${{ github.event.commits.url }}) by (${{ github.event.commits.author.name }}) broke the build
+            Commit `${{ github.sha }}` by `${{ github.actor }}` broke the build
+            [View Commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
           color: 0xE74C3C
             

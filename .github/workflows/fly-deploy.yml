@@ -18,15 +18,27 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
       - name: The deployment has succeeded
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        if: ${{ success() }}
+        uses: sarisia/actions-status-discord@v1
+        if: success()
         with:
-          severity: info
+          nodetail: true
+          content: "New version of Pokedex deployed"
+          status: ${{ job.status }}
+          description: |
+            Version `${{ github.event.release.tag_name }}`
+            to (${{ github.event.release.html_url }}) by (${{ github.event.commits.author.name }})
+          color: 0x2ECC71
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: The deployment has failed
-        uses: rjstone/discord-webhook-notify@v1.0.4
-        if: ${{ failure() }}
+        uses: sarisia/actions-status-discord@v1
+        if: failure() 
         with:
-          severity: error
+          nodetail: true
+          content: "New version of Pokedex deployed"
+          status: ${{ job.status }}
+          description: |
+            Version `${{ github.event.release.tag_name }}`
+            Click to (${{ github.event.commits.url }}) by (${{ github.event.commits.author.name }}) broke the build
+          color: 0xE74C3C
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             
